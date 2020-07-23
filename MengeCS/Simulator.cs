@@ -10,11 +10,12 @@ namespace MengeCS
     /// Wrapper for Menge::SimulatorBase
     /// </summary>
     public class Simulator
-    {   
+    {
         /// <summary>
         /// Constructor.
         /// </summary>
-        public Simulator() {
+        public Simulator()
+        {
             _agents = new List<Agent>();
         }
 
@@ -38,7 +39,7 @@ namespace MengeCS
                     agt._radius = MengeWrapper.GetAgentRadius(i);
                     _agents.Add(agt);
                 }
-                    return true;
+                return true;
             }
             else
             {
@@ -50,14 +51,15 @@ namespace MengeCS
         /// <summary>
         /// The number of agents in the simulation.
         /// </summary>
-        public int AgentCount { get { return _agents.Count;} }
+        public int AgentCount { get { return _agents.Count; } }
 
         /// <summary>
         /// Returns the ith agent.
         /// </summary>
         /// <param name="i">Index of the agent to retrieve.</param>
         /// <returns>The ith agent.</returns>
-        public Agent GetAgent( int i ) {
+        public Agent GetAgent(int i)
+        {
             return _agents[i];
         }
 
@@ -75,9 +77,11 @@ namespace MengeCS
         /// Advances the simulation by the current time step.
         /// </summary>
         /// <returns>True if evaluation is successful and the simulation can proceed.</returns>
-        public bool DoStep() {
+        public bool DoStep()
+        {
             bool running = MengeWrapper.DoStep();
-            for (int i = 0; i < _agents.Count; ++i) {
+            for (int i = 0; i < _agents.Count; ++i)
+            {
                 float x = 0, y = 0, z = 0;
                 MengeWrapper.GetAgentPosition((uint)i, ref x, ref y, ref z);
                 _agents[i].Position.Set(x, y, z);
@@ -111,7 +115,7 @@ namespace MengeCS
         /// <summary>
         /// Read-only access to the set of triggers.
         /// </summary>
-        public List<ExternalTrigger> Triggers {  get { return _triggers; } }
+        public List<ExternalTrigger> Triggers { get { return _triggers; } }
 
         /// <summary>
         /// The external triggers exposed by the simulator.
